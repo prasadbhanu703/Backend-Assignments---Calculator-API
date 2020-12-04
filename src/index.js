@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
     // your code goes here
-app.get("/calculator", (req, res) => {
+app.get("/", (req, res) => {
     res.send("Hello world!");
 })
 
@@ -20,6 +20,7 @@ app.post("/add", (req, res) => {
     console.log(req.body);
     const num1 = req.body.num1;
     const num2 = req.body.num2;
+    const sum = parseFloat(num1) + parseFloat(num2);
     if (isNaN(parseFloat(num1)) || isNaN(parseFloat(num2))) {
         res.send({
             status: "error",
@@ -27,14 +28,14 @@ app.post("/add", (req, res) => {
         });
         return;
     }
-    if (parseFloat(num1) > 100000 || parseFloat(num2) > 100000) {
+    if (parseFloat(num1) > 100000 || parseFloat(num2) > 100000 || sum > 100000) {
         res.send({
             status: "error",
             message: "Overflow"
         });
         return;
     }
-    if (parseFloat(num1) < -100000 || parseFloat(num2) < -100000) {
+    if (parseFloat(num1) < -100000 || parseFloat(num2) < -100000 || sum < -100000) {
         res.send({
             status: "error",
             message: "Underflow"
@@ -42,7 +43,7 @@ app.post("/add", (req, res) => {
         return;
     }
 
-    const sum = parseFloat(num1) + parseFloat(num2);
+
     res.send({
         status: "success",
         message: "The sum of given numbers",
