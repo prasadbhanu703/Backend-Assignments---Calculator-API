@@ -20,7 +20,7 @@ app.post("/add", (req, res) => {
     console.log(req.body);
     const num1 = req.body.num1;
     const num2 = req.body.num2;
-    const sum = parseFloat(num1) + parseFloat(num2);
+
     if (isNaN(parseFloat(num1)) || isNaN(parseFloat(num2))) {
         res.send({
             status: "error",
@@ -28,6 +28,8 @@ app.post("/add", (req, res) => {
         });
         return;
     }
+    const sum = parseFloat(num1) + parseFloat(num2);
+
     if (parseFloat(num1) > 100000 || parseFloat(num2) > 100000 || sum > 100000) {
         res.send({
             status: "error",
@@ -55,6 +57,8 @@ app.post("/sub", (req, res) => {
     console.log(req.body);
     const num1 = req.body.num1;
     const num2 = req.body.num2;
+
+
     if (isNaN(parseFloat(num1)) || isNaN(parseFloat(num2))) {
         res.send({
             status: "error",
@@ -62,14 +66,16 @@ app.post("/sub", (req, res) => {
         });
         return;
     }
-    if (parseFloat(num1) > 100000 || parseFloat(num2) > 100000) {
+    const difference = parseFloat(num1) - parseFloat(num2);
+
+    if (parseFloat(num1) > 100000 || parseFloat(num2) > 100000 || difference > 100000) {
         res.send({
             status: "error",
             message: "Overflow"
         });
         return;
     }
-    if (parseFloat(num1) < -100000 || parseFloat(num2) < -100000) {
+    if (parseFloat(num1) < -100000 || parseFloat(num2) < -100000 || difference < -100000) {
         res.send({
             status: "error",
             message: "Underflow"
@@ -77,7 +83,7 @@ app.post("/sub", (req, res) => {
         return;
     }
 
-    const difference = parseFloat(num1) - parseFloat(num2);
+
     res.send({
         status: "success",
         message: "The differene of given numbers",
@@ -89,6 +95,7 @@ app.post("/multiply", (req, res) => {
     console.log(req.body);
     const num1 = req.body.num1;
     const num2 = req.body.num2;
+
     if (isNaN(parseFloat(num1)) || isNaN(parseFloat(num2))) {
         res.send({
             status: "error",
@@ -96,14 +103,16 @@ app.post("/multiply", (req, res) => {
         });
         return;
     }
-    if (parseFloat(num1) > 100000 || parseFloat(num2) > 100000) {
+    const multiplication = parseFloat(num1) * parseFloat(num2);
+
+    if (parseFloat(num1) > 100000 || parseFloat(num2) > 100000 || multiplication > 100000) {
         res.send({
             status: "error",
             message: "Overflow"
         });
         return;
     }
-    if (parseFloat(num1) < -100000 || parseFloat(num2) < -100000) {
+    if (parseFloat(num1) < -100000 || parseFloat(num2) < -100000) || multiplication < -100000 {
         res.send({
             status: "error",
             message: "Underflow"
@@ -111,7 +120,7 @@ app.post("/multiply", (req, res) => {
         return;
     }
 
-    const multiplication = parseFloat(num1) * parseFloat(num2);
+
     res.send({
         status: "success",
         message: "The product of given numbers",
@@ -152,11 +161,11 @@ app.post("/divide", (req, res) => {
         return
     }
 
-    const sum = parseFloat(num1) / parseFloat(num2);
+    const divide = parseFloat(num1) / parseFloat(num2);
     res.send({
         status: "success",
         message: "The division of given numbers",
-        result: sum
+        result: divide
     })
 })
 
