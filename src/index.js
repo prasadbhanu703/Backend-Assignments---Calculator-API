@@ -112,21 +112,21 @@ app.post("/multiply", (req, res) => {
         });
         return;
     }
-    if (parseFloat(num1) < -100000 || parseFloat(num2) < -100000) || multiplication < -100000 {
+
+    if (parseFloat(num1) < -100000 || parseFloat(num2) < -100000 || multiplication < -100000) {
         res.send({
             status: "error",
             message: "Underflow"
-        })
+        });
         return;
     }
-
 
     res.send({
         status: "success",
         message: "The product of given numbers",
         result: multiplication
-    })
-})
+    });
+});
 
 app.post("/divide", (req, res) => {
     console.log(req.body);
@@ -158,15 +158,15 @@ app.post("/divide", (req, res) => {
             status: "error",
             message: "Cannot divide by zero"
         })
-        return
-    }
+        return;
+    };
 
     const divide = parseFloat(num1) / parseFloat(num2);
     res.send({
         status: "success",
         message: "The division of given numbers",
         result: divide
-    })
+    });
 })
 
 
